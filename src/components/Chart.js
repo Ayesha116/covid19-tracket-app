@@ -21,12 +21,12 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
     confirmed ? (
       <Bar
         data={{
-          labels: ['Infected', 'Recovered', 'Deaths'],
+          labels: ['Infected', 'Recovered', 'Deaths' , "Active"],
           datasets: [
             {
               label: 'People',
-              backgroundColor: ['#3F51B5', '#689F38', '#D32F2F'],
-              data: [confirmed.value, recovered.value, deaths.value],
+              backgroundColor: ['#3F51B5', '#689F38', '#D32F2F', "#FFFF8D"],
+              data: [confirmed.value, recovered.value, deaths.value, confirmed.value-recovered.value-deaths.value],
             },
           ],
         }}
@@ -55,6 +55,9 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
             backgroundColor: 'rgba(255, 0, 0, 0.5)',
             fill: true,
           },
+          
+
+
           ],
         }}
       />

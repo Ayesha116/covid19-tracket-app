@@ -5,8 +5,8 @@ import { Card , Typography , CardContent , makeStyles , Grid  } from '@material-
 const useStyles = makeStyles({
     root: {
       width : "300px",
-      backgroundColor: "white",
-      border : "2x solid grey",
+      backgroundColor: "#F5F5F5",
+      boxShadow: "2px 3p black",
       display: "flex",
       justifyContent: "spaceAround",
       
@@ -14,13 +14,22 @@ const useStyles = makeStyles({
     },
     num: {
       marginBottom: 12,
-      fontSize: 50,
+      fontSize: 45,
       textAlign: "center",
     },
     pos: {
       marginBottom: 12,
       fontSize: 14,
       textAlign: "center",
+    },
+    active: {
+        color:"FFFF00"
+      },
+    deaths: {
+        color:"#D50000"
+    },
+    recovered: {
+        color:"green"
     },
   });
 
@@ -34,13 +43,13 @@ export const Cards = ( { data : {confirmed , recovered , deaths , lastUpdate}} )
     return (
         <div>
             <Grid container spacing={3} className = "gridClass" >
-                <Grid item xs = {4} >
+                <Grid item xs = {12} md = {3} >
                     <Card className={classes.root} variant="outlined" >
                         <CardContent>
                             <Typography variant="h5" component="h2">
                                 Total Infected:
                             </Typography>
-                            <Typography className={classes.num} color = 'secondary'>
+                            <Typography className={classes.num} color = 'primary'>
                                 <CountUp start = {0} end = {confirmed.value} separator = "," />
                             </Typography>
                             <Typography className={classes.pos} color="text.primary">
@@ -50,13 +59,13 @@ export const Cards = ( { data : {confirmed , recovered , deaths , lastUpdate}} )
     
                     </Card>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12} md = {3}>
                 <Card className={classes.root} variant="outlined">
                         <CardContent>
-                            <Typography variant="h5" component="h2">
+                            <Typography variant="h5" component="h2" >
                                 Recovered:
                             </Typography>
-                            <Typography className={classes.num} color= ''>
+                            <Typography className={`${classes.num} ${classes.recovered}`} color= ''>
                                 <CountUp start = {0} end = {recovered.value} separator = "," />
                             </Typography>
                             <Typography className={classes.pos} color="text.primary">
@@ -66,13 +75,29 @@ export const Cards = ( { data : {confirmed , recovered , deaths , lastUpdate}} )
     
                     </Card>
                 </Grid>
-                <Grid item xs = {4}>
+                <Grid item xs = {12} md = {3} >
+                    <Card className={classes.root} variant="outlined" >
+                        <CardContent>
+                            <Typography variant="h5" component="h2">
+                                Active Cases:
+                            </Typography>
+                            <Typography className={`${classes.num} ${classes.active}`} color = 'secondary'>
+                                <CountUp start = {0} end = {confirmed.value - recovered.value - deaths.value} separator = "," />
+                            </Typography>
+                            <Typography className={classes.pos} color="text.primary">
+                                Last updated: {new Date(lastUpdate).toDateString()}
+                            </Typography>
+                        </CardContent>
+    
+                    </Card>
+                </Grid>
+                <Grid item xs = {12} md = {3}>
                 <Card className={classes.root} variant="outlined">
                         <CardContent>
                             <Typography variant="h5" component="h2">
                                 Deaths:
                             </Typography>
-                            <Typography className={classes.num} color="error">
+                            <Typography className={`${classes.num} ${classes.deaths}`} color="error">
                                 <CountUp start = {0} end = {deaths.value} separator = "," />
                             </Typography>
                             <Typography className={classes.pos} color="text.primary">
@@ -82,6 +107,7 @@ export const Cards = ( { data : {confirmed , recovered , deaths , lastUpdate}} )
     
                     </Card>
                 </Grid>
+                
             </Grid>
         </div>
        
