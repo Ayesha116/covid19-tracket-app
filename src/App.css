@@ -39,6 +39,7 @@
 
 .App {
   /* background-color:orange; */
+  text-align: center;
 }
 
 .image {
@@ -58,4 +59,11 @@
 .gridClass {
   width: 80%;
   margin: 0 auto;
+}
+
+.countries {
+  align-content: center;
+  text-align: center;
+  margin-top: 60px;
+  background-color: coral;
 }
