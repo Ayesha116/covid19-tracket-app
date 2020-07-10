@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,27 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+.App {
+  /* background-color:orange; */
+}
+
+.image {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 0px;
+}
+.heading {
+  font-weight: bolder;
+  font-size: 50px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  margin-top: 0px;
+}
+
+.gridClass {
+  width: 80%;
+  margin: 0 auto;
 }
