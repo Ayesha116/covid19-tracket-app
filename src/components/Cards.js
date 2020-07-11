@@ -23,7 +23,7 @@ const useStyles = makeStyles({
       textAlign: "center",
     },
     active: {
-        color:"FFFF00"
+        color:"#FFEA00"
       },
     deaths: {
         color:"#D50000"
