@@ -1,45 +1,31 @@
-import React from 'react';
-import { Fetchdata } from "./data/Fetchdata";
-import { Cards } from "./components/Cards";
-import Chart  from "./components/Chart";
-import Countries from "./components/Countries";
-import  covid  from ".componenets/images/covid.png";
-import "./App.css";
 
-// cl
-//       <div className="App">
-//         <
-class App extends React.Component {
-  state = {
-    data: {},
-    country: '',
-  }
+import React, {useContext} from 'react'
+import './App.css'
 
-  async componentDidMount() {
-    const data = await Fetchdata();
+import {ContextProvider} from './context/DataContext'
+import covid from './components/images/covid.png' 
+import {Cards} from './components/Cards' 
+import {Chart} from './components/Chart'
+import Countries from './components/Countries'
+import {DataContext} from './context/DataContext'
 
-    this.setState({ data });
-  }
 
-  handleCountryChange = async (country) => {
-    const data = await Fetchdata(country);
+const App = () => {
+  // const data = useContext(DataContext)
 
-    this.setState({ data, country: country });
-  }
-
-  render() {
-    const { data, country } = this.state;
-
-    return (
-      <div className="App">
-        <img src = { covid } alt ="corona" width = "200px" className = "image" />
-        <h5 className = "heading">COVID19 TRACKER</h5>
-        <Cards data={data} /><br/><br/><br/>
-        <Countries handleCountryChange={this.handleCountryChange} /><br/><br/>
-        <Chart data={data} country={country} /> 
+    
+  
+  return (
+    <ContextProvider>
+      <div className = 'container'>
+      <h2>Covid Tracker APP</h2> <span><img alt = 'virus' src = {covid} width = '100px'/></span>
+      <Cards></Cards>
+      <Countries></Countries>
+      <Chart></Chart>
       </div>
-    );
-  }
+    </ContextProvider>
+    
+  )
 }
 
 export default App;
