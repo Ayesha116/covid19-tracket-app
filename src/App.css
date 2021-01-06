@@ -3,3 +3,8 @@
   align-items: center;
   text-align: center;
 }
+
+.chart {
+  width: 80%;
+  margin-left: 10%;
+}

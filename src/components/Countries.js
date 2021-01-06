@@ -1,7 +1,6 @@
 import React, {useContext} from 'react'
 import {DataContext} from '../context/DataContext';
 import { makeStyles } from '@material-ui/core/styles';
-// import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
@@ -17,21 +16,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Countries() {  
     const classes = useStyles();
-    const {data , setselectedCountry} = useContext(DataContext)
+    const {data , setselectedCountryIndex} = useContext(DataContext)
     console.log(data)
     const handleCountryChange = (e) => {
-        console.log('aa')
-        setselectedCountry(e)
-        const confirmed = data.Countries[e-1].TotalConfirmed
-        const recovered = data.Countries[e-1].TotalRecovered
-        const deaths = data.Countries[e-1].TotalDeaths
-        console.log(confirmed)
-        console.log(recovered)
-        console.log(deaths)
+        console.log(e)
+        setselectedCountryIndex(e)
+        
       }
-    
-    
-
     
 
   if(!data){
@@ -44,7 +35,7 @@ export default function Countries() {
         <NativeSelect
         onChange={(e) => handleCountryChange(e.target.options.selectedIndex)}
         >
-          <option value={10}>Global Data</option>
+          <option key = {1000}>Global Data</option>
           {data.Countries.map( ( {Country} ,i) => {return <option key= {i} >{Country}</option>})}
         
           </NativeSelect>
